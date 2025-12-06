@@ -426,8 +426,8 @@ const HeroBundleVisuals = () => (
         className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-2xl transform scale-90 md:scale-95 origin-center items-start"
     >
        
-       {/* Left Column */}
-       <div className="flex flex-col gap-6">
+       {/* Left Column - HIDDEN ON MOBILE */}
+       <div className="hidden md:flex flex-col gap-6">
            <CardVolumeSelector />
            {/* Inner wrapper for spacing between GiftWrap and GridPricing */}
            <div className="hidden md:flex flex-col gap-6">
@@ -437,10 +437,15 @@ const HeroBundleVisuals = () => (
        </div>
 
        {/* Right Column */}
-       {/* FIX: Removed 'md:mt-16' so it aligns perfectly with the top of the left column */}
        <div className="flex flex-col gap-6">
-           <CardBundleUpsell />
+           {/* Bundle Upsell - HIDDEN ON MOBILE */}
+           <div className="hidden md:block">
+               <CardBundleUpsell />
+           </div>
+
+           {/* Pill Selector - VISIBLE ON MOBILE (This is the "Last Widget") */}
            <CardPillSelector />
+           
            <div className="hidden md:block">
                 <CardBogo />
            </div>
@@ -2160,7 +2165,8 @@ export default function App() {
         <section className="flex flex-col lg:flex-row min-h-[90vh] pt-6 lg:pt-0">
           
           {/* Left Column: Text Content */}
-          <div className="w-full lg:w-1/2 flex flex-col justify-center px-6 sm:px-12 lg:px-20 py-12 lg:py-0 order-2 lg:order-1 relative z-10">
+          {/* UPDATED: Removed 'order-2 lg:order-1' so text appears first on mobile naturally */}
+          <div className="w-full lg:w-1/2 flex flex-col justify-center px-6 sm:px-12 lg:px-20 py-12 lg:py-0 relative z-10">
             <motion.div 
                 initial="hidden"
                 animate="visible"
@@ -2228,7 +2234,8 @@ export default function App() {
           </div>
 
           {/* Right Column: Illustration & Visuals */}
-          <div className="w-full lg:w-1/2 bg-indigo-50 relative flex items-center justify-center overflow-hidden order-1 lg:order-2 min-h-[50vh] lg:min-h-auto border-l border-slate-100">            
+          {/* UPDATED: Removed 'order-1 lg:order-2' so visuals appear after text on mobile */}
+          <div className="w-full lg:w-1/2 bg-indigo-50 relative flex items-center justify-center overflow-hidden min-h-[50vh] lg:min-h-auto border-l border-slate-100">            
             {/* Background Pattern */}
             <div className="absolute inset-0 opacity-10">
                <svg width="100%" height="100%">
