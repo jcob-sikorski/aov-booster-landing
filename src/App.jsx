@@ -28,7 +28,7 @@ import {
   MoreHorizontal, 
   HelpCircle, 
   MousePointer2, 
-  Twitter, 
+  Linkedin, 
   Youtube,
   ShoppingCart,
   Loader2,
@@ -1553,6 +1553,20 @@ const SetupPreviewSection = memo(() => {
 
 // --- NEW COMPONENT: FOOTER (Memoized & Redesigned) ---
 const Footer = memo(() => {
+    // Define links data for cleaner JSX
+    const socialLinks = [
+        { 
+            icon: Linkedin, 
+            href: "https://www.linkedin.com/in/jcob-sikorski/", 
+            label: "LinkedIn Profile" 
+        },
+        { 
+            icon: Youtube, 
+            href: "https://www.youtube.com/@taskleap-ecom", 
+            label: "YouTube Channel" 
+        }
+    ];
+
     return (
         <footer className="relative bg-white pt-12 md:pt-24 pb-12 overflow-hidden">
              {/* Decorative Background Elements */}
@@ -1626,12 +1640,19 @@ const Footer = memo(() => {
                         </p>
                     </div>
 
-                    {/* Social Icons */}
+                    {/* Social Icons (UPDATED) */}
                     <div className="flex gap-4">
-                        {[Twitter, Youtube, Globe].map((Icon, i) => (
-                            <button key={i} aria-label="Social Link" className="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 hover:bg-indigo-50 hover:text-indigo-600 transition-colors cursor-pointer">
-                                <Icon size={18} />
-                            </button>
+                        {socialLinks.map((item, i) => (
+                            <a 
+                                key={i} 
+                                href={item.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label={item.label} 
+                                className="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 hover:bg-indigo-50 hover:text-indigo-600 transition-colors cursor-pointer"
+                            >
+                                <item.icon size={18} />
+                            </a>
                         ))}
                     </div>
                 </div>
