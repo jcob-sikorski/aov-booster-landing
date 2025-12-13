@@ -1925,23 +1925,13 @@ const InteractiveFeatures = () => {
 
 // --- SECTION: PRICING (Interactive Auto-Scale) ---
 
-// 1. Data Constants (Keep these outside the component)
-const AUTO_SCALE_PLAN = {
-  name: "AOV Booster (Auto-Scale)",
-  handle: "auto-scale",
-  amount: 29.99,
-  currencyCode: 'USD',
-  cappedAmount: 270.00, 
-  terms: "Base fee of $29.99/mo. Pricing automatically adjusts based on attributed revenue tiers up to $299/mo.",
-};
-
 const TIERS = [
-  { name: "Starter", maxRevenue: 5000, price: 29.99 },
-  { name: "Basic", maxRevenue: 10000, price: 59.99 },
-  { name: "Growth", maxRevenue: 20000, price: 99.00 },
-  { name: "Pro", maxRevenue: 30000, price: 149.00 },
-  { name: "Scale", maxRevenue: 50000, price: 199.00 },
-  { name: "Enterprise", maxRevenue: Infinity, price: 299.00 }
+  { name: "Starter", maxRevenue: 5000, price: 4.99 },
+  { name: "Basic", maxRevenue: 10000, price: 7.99 },
+  { name: "Growth", maxRevenue: 20000, price: 12.99 },
+  { name: "Pro", maxRevenue: 30000, price: 17.99 },
+  { name: "Scale", maxRevenue: 50000, price: 24.99 },
+  { name: "Enterprise", maxRevenue: Infinity, price: 39.99 }
 ];
 
 const PricingSection = memo(() => {
@@ -1983,7 +1973,7 @@ const PricingSection = memo(() => {
                     transition={{ delay: 0.1 }}
                     className="text-4xl md:text-5xl font-serif text-slate-900 mb-6"
                 >
-                    Pay as You Grow. <br/> Capped at $299.
+                    Pay as You Grow. <br/> Capped at $39.99.
                 </motion.h2>
                 <motion.p 
                     initial={{ opacity: 0, y: 10 }}
@@ -2095,7 +2085,7 @@ const PricingSection = memo(() => {
                                 </div>
                                 <div>
                                     <span className="text-sm font-bold text-slate-900 block">Never Overpay</span>
-                                    <span className="text-xs text-slate-500 leading-relaxed">Pricing is capped. Make $1M? You still pay $299.</span>
+                                    <span className="text-xs text-slate-500 leading-relaxed">Pricing is capped. Make $1M? You still pay $39.99.</span>
                                 </div>
                             </div>
                             <div className="flex items-start gap-3">
@@ -2158,7 +2148,7 @@ const PricingSection = memo(() => {
                 <div className="space-y-4">
                     {[
                         { q: "What is 'Attributed Revenue'?", a: "We only count revenue that came directly from a customer interacting with our widgets (bundles, upsells). If they buy organically without clicking our offer, you pay $0 for that order." },
-                        { q: "What happens if I exceed $50k revenue?", a: "You hit our Enterprise cap! You will never be charged more than $299/mo, no matter how much you sell." }
+                        { q: "What happens if I exceed $50k revenue?", a: "You hit our Enterprise cap! You will never be charged more than $39.99/mo, no matter how much you sell." }
                     ].map((faq, i) => (
                         <div key={i} className="bg-slate-50 rounded-xl p-5 border border-slate-100">
                             <h5 className="font-bold text-slate-900 text-sm mb-2 flex items-center gap-2">
