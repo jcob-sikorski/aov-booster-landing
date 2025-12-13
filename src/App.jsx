@@ -2174,7 +2174,7 @@ const PricingSection = memo(() => {
 
 // --- Main Application ---
 
-export default function App() {
+const LandingPage = () => {
   return (
     <div className="min-h-screen bg-white text-slate-900 font-sans selection:bg-indigo-100 selection:text-indigo-900 overflow-x-hidden">
       
@@ -2320,5 +2320,21 @@ export default function App() {
       {/* 9. FOOTER SECTION */}
       <Footer />
     </div>
+  );
+}
+
+// 2. IMPORT PrivacyPolicy and Router components
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import PrivacyPolicy from './PrivacyPolicy'; // Import the new file
+
+// 3. CREATE the new App component with Routing
+export default function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/privacy" element={<PrivacyPolicy />} />
+      </Routes>
+    </Router>
   );
 }
