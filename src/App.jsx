@@ -1,4 +1,5 @@
 import React, { useState, useEffect, memo } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   ArrowRight, 
@@ -1663,7 +1664,9 @@ const Footer = memo(() => {
                         © 2025 TaskLeap LLC All rights reserved.
                     </div>
                     <div className="flex gap-6 md:gap-8 flex-wrap justify-center">
-                        <span className="hover:text-slate-600 transition-colors cursor-pointer">Privacy Policy</span>
+                        <Link to="/privacy" className="hover:text-slate-600 transition-colors cursor-pointer">
+                        Privacy Policy
+                        </Link>
                         <span className="hover:text-slate-600 transition-colors cursor-pointer">Terms of Service</span>
                         <span className="hover:text-slate-600 transition-colors cursor-pointer">Cookie Settings</span>
                     </div>
