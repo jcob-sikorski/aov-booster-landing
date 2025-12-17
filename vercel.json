@@ -1,6 +1,14 @@
 {
   "rewrites": [
     {
+      "source": "/blog",
+      "destination": "aov-booster-blog.vercel.app/blog"
+    },
+    {
+      "source": "/blog/:match*",
+      "destination": "aov-booster-blog.vercel.app/blog/:match*"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
