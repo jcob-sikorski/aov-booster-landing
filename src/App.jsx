@@ -1678,6 +1678,7 @@ const Footer = memo(() => {
 });
 
 // --- NEW: Navbar Component (Isolates Scroll Logic) ---
+// --- NEW: Navbar Component (Isolates Scroll Logic) ---
 const Navbar = memo(() => {
   const [scrolled, setScrolled] = useState(false);
   const [heroPassed, setHeroPassed] = useState(false); 
@@ -1697,7 +1698,13 @@ const Navbar = memo(() => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = ['Features', 'Pricing', 'Showcase', 'Blog'];
+  // UPDATED: Defined as objects to handle mixed types (Anchor links vs /blog URL)
+  const navLinks = [
+    { name: 'Features', href: '#features' },
+    { name: 'Pricing', href: '#pricing' },
+    { name: 'Showcase', href: '#showcase' }, // Points to #showcase anchor
+    { name: 'Blog', href: '/blog' }          // Points to the Rewrite URL
+  ];
 
   return (
     <motion.nav
@@ -1711,7 +1718,6 @@ const Navbar = memo(() => {
           
           {/* --- Logo Section --- */}
           <div className="flex-shrink-0 flex items-center gap-2 cursor-pointer group">
-            {/* UPDATED: LOGO IN NAVBAR */}
             <div className="w-8 h-8 rounded-lg overflow-hidden transition-transform group-hover:scale-105">
               <img src="https://ucarecdn.com/52f868d5-f61f-4380-b350-7651ff684aad/-/preview/1000x1000/" alt="TaskLeap Logo" className="w-full h-full object-cover" />
             </div>
@@ -1724,11 +1730,11 @@ const Navbar = memo(() => {
           <div className="hidden md:flex items-center space-x-8">
             {navLinks.map((item) => (
               <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
+                key={item.name}
+                href={item.href}
                 className="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors"
               >
-                {item}
+                {item.name}
               </a>
             ))}
           </div>
@@ -1745,7 +1751,7 @@ const Navbar = memo(() => {
                 text-sm font-bold px-5 py-2.5 rounded-full transition-all duration-300 shadow-md
                 ${heroPassed 
                   ? 'bg-orange-600 text-white shadow-orange-200 hover:bg-orange-700' 
-                  : 'bg-slate-900 text-white hover:bg-black' // <--- UPDATED HERE
+                  : 'bg-slate-900 text-white hover:bg-black'
                 }
               `}
               whileHover={{ scale: 1.05 }}
@@ -1780,12 +1786,12 @@ const Navbar = memo(() => {
             <div className="p-4 space-y-2">
                 {navLinks.map((item) => (
                 <a
-                    key={item}
-                    href={`#${item.toLowerCase()}`}
+                    key={item.name}
+                    href={item.href}
                     className="block px-4 py-3 text-base font-medium text-slate-600 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors"
                     onClick={() => setIsMenuOpen(false)}
                 >
-                    {item}
+                    {item.name}
                 </a>
                 ))}
                 <div className="pt-4 mt-4 border-t border-slate-100 grid gap-3">
