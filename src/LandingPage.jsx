@@ -1,5 +1,6 @@
 import React, { useState, useEffect, memo } from 'react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   ArrowRight, 
@@ -15,11 +16,11 @@ import {
   RefreshCw, 
   ShoppingBag, 
   Settings,        
-  Globe,                 
+  Globe,                  
   Image as ImageIcon, 
-  Type,                   
+  Type,                    
   LayoutTemplate, 
-  PenTool,                 
+  PenTool,                  
   CheckCircle2,        
   ChevronDown, 
   Circle, 
@@ -36,13 +37,24 @@ import {
   Sparkles
 } from 'lucide-react';
 
-// --- Animation Variants ---
+// --- SEO FIX 1: Faster Animation Variants (< 0.5s) ---
 const fadeInUp = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 20 }, // Reduced Y distance for faster perception
   visible: { 
     opacity: 1, 
     y: 0, 
-    transition: { duration: 0.6, ease: "easeOut" } 
+    transition: { duration: 0.4, ease: "easeOut" } // Reduced from 0.6s to 0.4s
+  }
+};
+
+// --- SEO FIX 2: Priority Variant for H1/Hero Text ---
+// This ensures the main keyword text loads almost instantly
+const heroTextVariant = {
+  hidden: { opacity: 0, y: 10 },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { duration: 0.3, ease: "easeOut" } 
   }
 };
 
@@ -51,18 +63,18 @@ const staggerContainer = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.1
+      staggerChildren: 0.05, // Faster stagger (was 0.1)
+      delayChildren: 0.05    // Faster delay (was 0.1)
     }
   }
 };
 
 const scaleIn = {
-  hidden: { opacity: 0, scale: 0.9 },
+  hidden: { opacity: 0, scale: 0.95 },
   visible: { 
     opacity: 1, 
-    scale: 1,
-    transition: { duration: 0.5, ease: "backOut" }
+    scale: 1, 
+    transition: { duration: 0.4, ease: "backOut" } // Faster scale
   }
 };
 
@@ -197,7 +209,6 @@ const CardVolumeSelector = () => (
         </div>
         <div className="text-xs font-bold text-slate-900">€40.00</div>
       </div>
-      {/* Active State: Indigo Border */}
       <div className="relative p-3 rounded-lg border-2 border-indigo-600 bg-white shadow-sm">
         <div className="absolute -top-2.5 right-2 bg-indigo-600 text-white text-[9px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1">
           MOST POPULAR
@@ -228,7 +239,6 @@ const CardVolumeSelector = () => (
   </BundleCardBase>
 );
 
-// Variant 2: The Grid Pricing
 const CardGridPricing = () => (
     <BundleCardBase>
         <div className="grid grid-cols-2 gap-2">
@@ -252,7 +262,6 @@ const CardGridPricing = () => (
     </BundleCardBase>
 );
 
-// Variant 3: Checkbox Upsell
 const CardGiftWrap = () => (
     <BundleCardBase className="!p-3">
         <div className="flex items-center gap-3">
@@ -269,7 +278,6 @@ const CardGiftWrap = () => (
     </BundleCardBase>
 );
 
-// Variant 4: Complete the Bundle
 const CardBundleUpsell = () => (
     <BundleCardBase>
          <div className="flex items-center justify-between pb-3 border-b border-slate-50 mb-3 opacity-60">
@@ -284,7 +292,6 @@ const CardBundleUpsell = () => (
              </div>
              <div className="text-xs font-bold text-slate-900">€50.00</div>
          </div>
-         {/* Active Bundle Box */}
          <div className="border border-indigo-600 rounded-lg p-3 bg-indigo-50/50 relative">
              <div className="flex items-start gap-3">
                  <div className="mt-0.5 w-4 h-4 rounded-full border-[4px] border-indigo-600 bg-white shrink-0"></div>
@@ -309,14 +316,11 @@ const CardBundleUpsell = () => (
     </BundleCardBase>
 );
 
-// Variant 5: BOGO
 const CardBogo = () => (
     <BundleCardBase>
         <div className="space-y-2">
-            {/* Active State: Changed from Black to Light Blue (Indigo) */}
             <div className="bg-indigo-50 border border-indigo-600 text-slate-900 p-3 rounded-lg flex items-center justify-between shadow-sm">
                  <div className="flex items-center gap-3">
-                     {/* Radio Button: Matching the BundleUpsell style (Indigo ring, white center) */}
                      <div className="w-4 h-4 rounded-full border-[4px] border-indigo-600 bg-white"></div>
                      <div>
                          <div className="text-xs font-bold text-slate-900">Buy 1, get 1 free</div>
@@ -325,12 +329,10 @@ const CardBogo = () => (
                  </div>
                  <div className="text-right">
                     <div className="text-sm font-bold text-slate-900">€20,00</div>
-                    {/* Strikethrough color updated for light background */}
                     <div className="text-[10px] text-slate-400 line-through">€40,00</div>
                  </div>
             </div>
 
-            {/* Inactive State (Unchanged) */}
             <div className="p-3 rounded-lg border border-slate-100 flex items-center justify-between opacity-60">
                  <div className="flex items-center gap-3">
                      <div className="w-4 h-4 rounded-full border border-slate-300"></div>
@@ -351,7 +353,6 @@ const CardBogo = () => (
     </BundleCardBase>
 );
 
-// Variant 6: Pill Selector
 const CardPillSelector = () => (
     <BundleCardBase>
         <div className="space-y-3">
@@ -426,7 +427,7 @@ const HeroBundleVisuals = () => (
     <motion.div 
         className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-2xl transform scale-90 md:scale-95 origin-center items-start"
     >
-       
+        
        {/* Left Column - HIDDEN ON MOBILE */}
        <div className="hidden md:flex flex-col gap-6">
            <CardVolumeSelector />
@@ -2176,21 +2177,28 @@ const PricingSection = memo(() => {
 export default function LandingPage() {
   return (
     <div className="min-h-screen bg-white text-slate-900 font-sans selection:bg-indigo-100 selection:text-indigo-900 overflow-x-hidden">
+      
+      {/* --- SEO FIX 3: NOSCRIPT SAFETY NET --- */}
+      {/* This forces content to be visible if JS is disabled or for bots that don't execute JS */}
+      <noscript>
+        <style>{`
+          .opacity-0 { opacity: 1 !important; }
+          [style*="opacity: 0"] { opacity: 1 !important; transform: none !important; }
+        `}</style>
+      </noscript>
 
-    <Helmet>
-    <title>TaskLeap Bundles | Volume Discounts & Gift Builder for Shopify</title>
-    <meta name="description" content="Boost your Shopify AOV with TaskLeap Bundles. Create volume discounts, BOGO offers, and custom bundles in minutes. No coding required." />
-    <link rel="canonical" href="https://boostaov.com/" />
-    
-    {/* Open Graph (Social Sharing) */}
-    <meta property="og:title" content="TaskLeap Bundles: Boost Shopify AOV" />
-    <meta property="og:description" content="Stop leaving money on the table. Turn single orders into high-profit bundles." />
-    <meta property="og:image" content="https://boostaov.com/social-share.jpg" />
+      <Helmet>
+        <title>TaskLeap Bundles | Volume Discounts & Gift Builder for Shopify</title>
+        <meta name="description" content="Boost your Shopify AOV with TaskLeap Bundles. Create volume discounts, BOGO offers, and custom bundles in minutes. No coding required." />
+        <link rel="canonical" href="https://boostaov.com/" />
+        
+        <meta property="og:title" content="TaskLeap Bundles: Boost Shopify AOV" />
+        <meta property="og:description" content="Stop leaving money on the table. Turn single orders into high-profit bundles." />
+        <meta property="og:image" content="https://boostaov.com/social-share.jpg" />
 
-    {/* JSON-LD Schema for Rich Snippets */}
-    <script type="application/ld+json">
+        <script type="application/ld+json">
         {`
-        {
+          {
             "@context": "https://schema.org",
             "@type": "SoftwareApplication",
             "name": "TaskLeap Bundles",
@@ -2199,23 +2207,23 @@ export default function LandingPage() {
             "operatingSystem": "Shopify",
             "description": "Shopify app for increasing AOV through bundles, gifts, and volume discounts with built-in analytics and A/B testing.",
             "aggregateRating": {
-            "@type": "AggregateRating",
-            "ratingValue": "5.0",
-            "ratingCount": "1400"
+              "@type": "AggregateRating",
+              "ratingValue": "5.0",
+              "ratingCount": "1400"
             },
             "offers": {
-            "@type": "AggregateOffer",
-            "lowPrice": "0",
-            "highPrice": "39.99",
-            "priceCurrency": "USD",
-            "offerCount": "6"
+              "@type": "AggregateOffer",
+              "lowPrice": "0",
+              "highPrice": "39.99",
+              "priceCurrency": "USD",
+              "offerCount": "6"
             }
-        }
+          }
         `}
-    </script>
-    </Helmet>
+        </script>
+      </Helmet>
       
-      {/* 1. NAVBAR (Fixed, triggers pt-24 on main) */}
+      {/* 1. NAVBAR */}
       <Navbar />
 
       {/* 2. HERO SECTION */}
@@ -2223,17 +2231,17 @@ export default function LandingPage() {
         <section className="flex flex-col lg:flex-row min-h-[90vh] pt-6 lg:pt-0">
           
           {/* Left Column: Text Content */}
-          {/* UPDATED: Removed 'order-2 lg:order-1' so text appears first on mobile naturally */}
           <div className="w-full lg:w-1/2 flex flex-col justify-center px-6 sm:px-12 lg:px-20 py-12 lg:py-0 relative z-10">
             <motion.div 
                 initial="hidden"
                 animate="visible"
-                variants={staggerContainer}
+                variants={staggerContainer} // Using faster stagger
                 className="max-w-xl mx-auto lg:mx-0"
             >
               
+              {/* UPDATED: Using heroTextVariant for instant visibility */}
               <motion.h1 
-                variants={fadeInUp} 
+                variants={heroTextVariant} 
                 className="text-4xl sm:text-6xl lg:text-7xl font-serif text-slate-900 leading-[1.1] mb-6 tracking-tight"
               >
                 The Bundle App That <br/>
@@ -2242,17 +2250,17 @@ export default function LandingPage() {
                   <motion.span 
                     initial={{ width: 0 }}
                     animate={{ width: "100%" }}
-                    transition={{ delay: 0.8, duration: 0.8 }}
+                    transition={{ delay: 0.4, duration: 0.6 }} // Faster underline
                     className="absolute bottom-2 left-0 h-3 bg-indigo-200/60 -z-10 transform -rotate-1 rounded-sm"
                   ></motion.span>
                 </span> on Day 1.
               </motion.h1>
 
-              <motion.p variants={fadeInUp} className="text-lg sm:text-xl text-slate-600 mb-10 leading-relaxed max-w-lg">
+              <motion.p variants={heroTextVariant} className="text-lg sm:text-xl text-slate-600 mb-10 leading-relaxed max-w-lg">
                 Stop leaving money on the table. Join <span className="font-semibold text-slate-900">40,000+ brands</span> using TaskLeap Bundles to build high-converting bundles, volume discounts, and upsells in under 2 minutes.
               </motion.p>
 
-              <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4 mb-16">
+              <motion.div variants={heroTextVariant} className="flex flex-col sm:flex-row gap-4 mb-16">
                 <Button variant="accent" icon={ArrowRight} className="!py-4 !px-8 !text-lg w-full sm:w-auto">
                   Start Free Trial
                 </Button>
@@ -2292,9 +2300,7 @@ export default function LandingPage() {
           </div>
 
           {/* Right Column: Illustration & Visuals */}
-          {/* UPDATED: Removed 'order-1 lg:order-2' so visuals appear after text on mobile */}
           <div className="w-full lg:w-1/2 bg-indigo-50 relative flex items-center justify-center overflow-hidden min-h-[50vh] lg:min-h-auto border-l border-slate-100">            
-            {/* Background Pattern */}
             <div className="absolute inset-0 opacity-10">
                <svg width="100%" height="100%">
                  <pattern id="dot-pattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
@@ -2304,7 +2310,6 @@ export default function LandingPage() {
                </svg>
             </div>
 
-            {/* Main Visuals: Bundle Grid */}
             <div className="relative w-full max-w-xl px-4 lg:px-0">
               <HeroBundleVisuals />
             </div>
@@ -2326,7 +2331,7 @@ export default function LandingPage() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 }}
+                    transition={{ delay: index * 0.1, duration: 0.4 }} // Speed up
                     className="flex-1 px-4 pt-6 md:pt-0 w-full"
                   >
                       <div className="font-serif text-4xl md:text-5xl lg:text-6xl mb-2 tracking-tight drop-shadow-sm">{stat.value}</div>
