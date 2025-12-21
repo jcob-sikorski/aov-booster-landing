@@ -1,13 +1,33 @@
 {
-  "trailingSlash": false,
+  "version": 2,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
+    }
+  ],
   "rewrites": [
     {
       "source": "/blog",
       "destination": "https://aov-booster-blog.vercel.app/blog"
     },
     {
-      "source": "/blog/:match*",
-      "destination": "https://aov-booster-blog.vercel.app/blog/:match*"
+      "source": "/blog/:path*",
+      "destination": "https://aov-booster-blog.vercel.app/blog/:path*"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/blog(.*)",
+      "dest": "https://aov-booster-blog.vercel.app/blog$1",
+      "status": 200
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
     }
   ]
 }
