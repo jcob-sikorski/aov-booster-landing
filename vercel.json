@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/blog",
-      "destination": "https://aov-booster-blog.vercel.app/blog/"
+      "destination": "https://aov-booster-blog.vercel.app/blog"
     },
     {
       "source": "/blog/:match*",
