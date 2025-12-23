@@ -1146,9 +1146,16 @@ const TestimonialsSection = memo(() => {
                         <p className="text-lg text-slate-600 mb-6">
                             Don't just take our word for it. See why we're rated 5 stars on the Shopify App Store.
                         </p>
+                        <a 
+                        href="https://apps.shopify.com/taskleap-bundles" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="inline-block"
+                        >
                         <Button variant="dark">
-                            Explore apps <ArrowRight size={18} className="ml-2" />
+                            Start Scaling <ArrowRight size={18} className="ml-2" />
                         </Button>
+                        </a>
                     </motion.div>
 
                     {/* Illustration Placeholder */}
@@ -1297,9 +1304,18 @@ const SetupPreviewSection = memo(() => {
                 transition={{ delay: 0.5 }}
                 className="pt-6 flex flex-col sm:flex-row gap-4"
             >
-                <Button variant="accent">
-                    Start 14-Day Trial
+                {/* Primary CTA linked to Shopify */}
+                <Button asChild variant="accent">
+                    <a 
+                        href="https://apps.shopify.com/taskleap-bundles" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                    >
+                        Start 14-Day Trial
+                    </a>
                 </Button>
+
+                {/* Secondary CTA - Documentation */}
                 <Button variant="secondary">
                     View Documentation
                 </Button>
@@ -1601,13 +1617,19 @@ const Footer = memo(() => {
                         </p>
                         
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                            <motion.button 
+                            {/* Linked CTA */}
+                            <motion.a 
+                                href="https://apps.shopify.com/taskleap-bundles"
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                className="w-full sm:w-auto bg-orange-600 text-white px-8 py-4 rounded-full font-bold text-lg shadow-[0_10px_20px_-10px_rgba(249,115,22,0.3)]"
+                                className="w-full sm:w-auto bg-orange-600 text-white px-8 py-4 rounded-full font-bold text-lg shadow-[0_10px_20px_-10px_rgba(249,115,22,0.3)] flex items-center justify-center text-center"
                             >
                                 Start 14-Day Free Trial
-                            </motion.button>
+                            </motion.a>
+
+                            {/* Live Demo Button */}
                             <motion.button 
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
@@ -1630,13 +1652,26 @@ const Footer = memo(() => {
                     
                     {/* Brand Section */}
                     <div className="max-w-md space-y-6">
-                        <div className="flex items-center gap-2">
-                             {/* UPDATED: LOGO IN FOOTER */}
-                             <div className="w-10 h-10 rounded-xl overflow-hidden shadow-lg shadow-indigo-200">
-                                <img src="https://ucarecdn.com/52f868d5-f61f-4380-b350-7651ff684aad/-/preview/1000x1000/" alt="TaskLeap Bundles Shopify App Logo" className="w-full h-full object-cover" />
+                        <a 
+                            href="https://apps.shopify.com/taskleap-bundles" 
+                            target="_blank" 
+                            rel="noopener noreferrer" 
+                            className="flex items-center gap-2 hover:opacity-80 transition-opacity group"
+                        >
+                            {/* --- LOGO --- */}
+                            <div className="w-10 h-10 rounded-xl overflow-hidden shadow-lg shadow-indigo-200 group-hover:shadow-indigo-300 transition-shadow">
+                                <img 
+                                    src="https://ucarecdn.com/52f868d5-f61f-4380-b350-7651ff684aad/-/preview/1000x1000/" 
+                                    alt="TaskLeap Bundles Shopify App Logo" 
+                                    className="w-full h-full object-cover" 
+                                />
                             </div>
-                            <span className="text-2xl font-bold tracking-tight text-slate-900">TaskLeap</span>
-                        </div>
+                            
+                            {/* --- BRAND NAME --- */}
+                            <span className="text-2xl font-bold tracking-tight text-slate-900">
+                                TaskLeap
+                            </span>
+                        </a>
                         <p className="text-slate-500 leading-relaxed">
                             Empowering Shopify merchants with tools to increase average order value and lifetime customer value.
                         </p>
@@ -1718,14 +1753,23 @@ const Navbar = memo(() => {
         <div className="flex justify-between items-center">
           
           {/* --- Logo Section --- */}
-          <div className="flex-shrink-0 flex items-center gap-2 cursor-pointer group">
+            <a 
+            href="https://apps.shopify.com/taskleap-bundles" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="flex-shrink-0 flex items-center gap-2 cursor-pointer group no-underline"
+            >
             <div className="w-8 h-8 rounded-lg overflow-hidden transition-transform group-hover:scale-105">
-              <img src="https://ucarecdn.com/52f868d5-f61f-4380-b350-7651ff684aad/-/preview/1000x1000/" alt="TaskLeap Bundles Shopify App Logo" className="w-full h-full object-cover" />
+                <img 
+                src="https://ucarecdn.com/52f868d5-f61f-4380-b350-7651ff684aad/-/preview/1000x1000/" 
+                alt="TaskLeap Bundles Shopify App Logo" 
+                className="w-full h-full object-cover" 
+                />
             </div>
             <span className="text-xl font-bold tracking-tight text-slate-900">
-              TaskLeap Bundles
+                TaskLeap Bundles
             </span>
-          </div>
+            </a>
 
           {/* --- Desktop Navigation --- */}
           <div className="hidden md:flex items-center space-x-8">
@@ -1742,24 +1786,27 @@ const Navbar = memo(() => {
 
           {/* --- Desktop Actions --- */}
           <div className="hidden md:flex items-center gap-4">
-            <button className="text-sm font-medium text-slate-600 hover:text-slate-900 px-3 py-2 transition-colors">
+            {/* <button className="text-sm font-medium text-slate-600 hover:text-slate-900 px-3 py-2 transition-colors">
               Login
-            </button>
+            </button> */}
             
-            <motion.button
-              layout
-              className={`
-                text-sm font-bold px-5 py-2.5 rounded-full transition-all duration-300 shadow-md
+            <motion.a
+            href="https://apps.shopify.com/taskleap-bundles"
+            target="_blank"
+            rel="noopener noreferrer"
+            layout
+            className={`
+                text-sm font-bold px-5 py-2.5 rounded-full transition-all duration-300 shadow-md inline-block
                 ${heroPassed 
-                  ? 'bg-orange-600 text-white shadow-orange-200 hover:bg-orange-700' 
-                  : 'bg-slate-900 text-white hover:bg-black'
+                ? 'bg-orange-600 text-white shadow-orange-200 hover:bg-orange-700' 
+                : 'bg-slate-900 text-white hover:bg-black'
                 }
-              `}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+            `}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             >
-              Get Started Now
-            </motion.button>
+            Get Started Now
+            </motion.a>
           </div>
 
           {/* --- Mobile Hamburger --- */}
@@ -2135,9 +2182,14 @@ const PricingSection = memo(() => {
                             </div>
 
                             {/* --- FIXED BUTTON HERE --- */}
-                            <button className="w-full bg-orange-600 hover:bg-indigo-50 text-white hover:text-indigo-700 font-bold py-4 rounded-xl transition-all hover:scale-[1.02] shadow-xl flex items-center justify-center gap-2 group">
+                            <a 
+                            href="https://apps.shopify.com/taskleap-bundles" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="w-full bg-orange-600 hover:bg-indigo-50 text-white hover:text-indigo-700 font-bold py-4 rounded-xl transition-all hover:scale-[1.02] shadow-xl flex items-center justify-center gap-2 group"
+                            >
                                 Start 14-Day Free Trial <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform"/>
-                            </button>
+                            </a>
                             
                             <div className="text-center mt-4 text-[10px] text-slate-500">
                                 Powered by Shopify Secure Billing
@@ -2261,9 +2313,16 @@ export default function LandingPage() {
               </motion.p>
 
               <motion.div variants={heroTextVariant} className="flex flex-col sm:flex-row gap-4 mb-16">
+                <a 
+                href="https://apps.shopify.com/taskleap-bundles" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-block w-full sm:w-auto"
+                >
                 <Button variant="accent" icon={ArrowRight} className="!py-4 !px-8 !text-lg w-full sm:w-auto">
-                  Start Free Trial
+                    Start Free Trial
                 </Button>
+                </a>
                 <Button variant="ghost" className="!py-4 !px-8 !text-lg underline decoration-slate-300 underline-offset-4 hover:decoration-slate-900 w-full sm:w-auto">
                   View Demo Store
                 </Button>
