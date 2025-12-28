@@ -59,7 +59,7 @@ export default function PrivacyPolicy() {
       <Helmet>
         <title>Privacy Policy | TaskLeap Bundles</title>
         <meta name="description" content="Privacy Policy for TaskLeap Bundles. Learn how we collect, use, and protect your Shopify store data." />
-        <link rel="canonical" href="https://boostaov.com/privacy" />
+        <link rel="canonical" href="https://www.boostaov.com/privacy" />
         {/* Tells Google NOT to index this page if you prefer, or keep 'index' if you want it found */}
         <meta name="robots" content="index, follow" /> 
       </Helmet>

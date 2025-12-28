@@ -2242,11 +2242,11 @@ export default function LandingPage() {
       <Helmet>
         <title>TaskLeap Bundles | Volume Discounts & Gift Builder for Shopify</title>
         <meta name="description" content="Boost your Shopify AOV with TaskLeap Bundles. Create volume discounts, BOGO offers, and custom bundles in minutes. No coding required." />
-        <link rel="canonical" href="https://boostaov.com/" />
+        <link rel="canonical" href="https://www.boostaov.com/" />
         
         <meta property="og:title" content="TaskLeap Bundles: Boost Shopify AOV" />
         <meta property="og:description" content="Stop leaving money on the table. Turn single orders into high-profit bundles." />
-        <meta property="og:image" content="https://boostaov.com/social-share.jpg" />
+        <meta property="og:image" content="https://www.boostaov.com/social-share.jpg" />
 
         <script type="application/ld+json">
         {`
@@ -2254,7 +2254,7 @@ export default function LandingPage() {
             "@context": "https://schema.org",
             "@type": "SoftwareApplication",
             "name": "TaskLeap Bundles",
-            "url": "https://boostaov.com",
+            "url": "https://www.boostaov.com",
             "applicationCategory": "BusinessApplication",
             "operatingSystem": "Shopify",
             "description": "Shopify app for increasing AOV through bundles, gifts, and volume discounts with built-in analytics and A/B testing.",

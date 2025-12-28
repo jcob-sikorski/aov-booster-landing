@@ -11,7 +11,7 @@ function BlogRedirect() {
   
   useEffect(() => {
     // Redirect to blog on the separate domain
-    window.location.href = `https://boostaov.com${location.pathname}${location.search}`;
+    window.location.href = `https://www.boostaov.com${location.pathname}${location.search}`;
   }, []);
   
   return <div>Redirecting to blog...</div>;

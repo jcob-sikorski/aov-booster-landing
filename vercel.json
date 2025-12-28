@@ -11,14 +11,12 @@
   ],
   "routes": [
     {
-      "src": "/blog/?$",
-      "dest": "https://aov-booster-blog.vercel.app/",
-      "check": true
+      "src": "/blog",
+      "dest": "https://aov-booster-blog.vercel.app/"
     },
     {
       "src": "/blog/(.*)",
-      "dest": "https://aov-booster-blog.vercel.app/$1",
-      "check": true
+      "dest": "https://aov-booster-blog.vercel.app/$1"
     },
     {
       "handle": "filesystem"
