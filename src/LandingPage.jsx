@@ -1616,7 +1616,7 @@ const Footer = memo(() => {
                             Join 40,000+ merchants using TaskLeap to create seamless bundle offers and upsells. Setup takes less than 2 minutes.
                         </p>
                         
-                        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                        <div className="flex flex-col sm:flex-row items-start justify-center gap-4">
                             {/* Linked CTA */}
                             <motion.a 
                                 href="https://apps.shopify.com/taskleap-bundles"
@@ -1629,15 +1629,23 @@ const Footer = memo(() => {
                                 Start 14-Day Free Trial
                             </motion.a>
 
-                            {/* Live Demo Button */}
-                            <motion.button 
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                className="w-full sm:w-auto px-8 py-4 rounded-full font-bold text-lg text-white border border-slate-700 hover:bg-slate-800 transition-all flex items-center justify-center gap-2"
-                            >
-                                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                                View Live Demo
-                            </motion.button>
+                            {/* Live Demo Wrapper */}
+                            <div className="flex flex-col items-center w-full sm:w-auto">
+                                <motion.a 
+                                    href="https://taskleap-bundles.myshopify.com/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                    className="w-full sm:w-auto px-8 py-4 rounded-full font-bold text-lg text-white border border-slate-700 hover:bg-slate-800 transition-all flex items-center justify-center gap-2"
+                                >
+                                    <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                                    View Live Demo
+                                </motion.a>
+                                <p className="text-xs text-slate-400 mt-3 font-medium">
+                                    Store password: <span className="text-white font-mono bg-slate-800 px-1.5 py-0.5 rounded">123456</span>
+                                </p>
+                            </div>
                         </div>
                         
                         <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-6 text-sm text-slate-400 font-medium">
@@ -2312,20 +2320,36 @@ export default function LandingPage() {
                 Stop leaving money on the table. Join <span className="font-semibold text-slate-900">40,000+ brands</span> using TaskLeap Bundles to build high-converting bundles, volume discounts, and upsells in under 2 minutes.
               </motion.p>
 
-              <motion.div variants={heroTextVariant} className="flex flex-col sm:flex-row gap-4 mb-16">
+              <motion.div variants={heroTextVariant} className="flex flex-col sm:flex-row gap-4 mb-16 items-start">
                 <a 
-                href="https://apps.shopify.com/taskleap-bundles" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="inline-block w-full sm:w-auto"
+                    href="https://apps.shopify.com/taskleap-bundles" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-block w-full sm:w-auto"
                 >
-                <Button variant="accent" icon={ArrowRight} className="!py-4 !px-8 !text-lg w-full sm:w-auto">
+                    <Button variant="accent" icon={ArrowRight} className="!py-4 !px-8 !text-lg w-full sm:w-auto">
                     Start Free Trial
-                </Button>
+                    </Button>
                 </a>
-                <Button variant="ghost" className="!py-4 !px-8 !text-lg underline decoration-slate-300 underline-offset-4 hover:decoration-slate-900 w-full sm:w-auto">
-                  View Demo Store
-                </Button>
+  
+                <div className="flex flex-col w-full sm:w-auto">
+                <a 
+                    href="https://taskleap-bundles.myshopify.com/" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-block w-full"
+                >
+                    <Button 
+                    variant="ghost" 
+                    className="!py-4 !px-8 !text-lg w-full sm:w-auto bg-slate-50 hover:bg-slate-100 rounded-full border border-slate-200 transition-colors"
+                    >
+                    View Demo Store
+                    </Button>
+                </a>
+                <p className="text-sm text-slate-500 mt-3 ml-1 text-center sm:text-left">
+                    Store password: <span className="font-mono font-bold text-slate-900 bg-slate-100 px-1.5 py-0.5 rounded">123456</span>
+                </p>
+                </div>
               </motion.div>
 
               <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row items-start sm:items-center gap-4 text-xs font-medium text-slate-500 mb-10">
